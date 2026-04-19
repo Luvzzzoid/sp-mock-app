@@ -703,11 +703,11 @@ class _TopNav extends StatelessWidget {
               ],
             ),
           ),
-          if (_desktopWindowControlsEnabled)
+          if (_desktopWindowControlsEnabled && !kIsWeb)
             const DragToMoveArea(
               child: SizedBox(width: 72, height: double.infinity),
             ),
-          if (_desktopWindowControlsEnabled)
+          if (_desktopWindowControlsEnabled && !kIsWeb)
             _WindowToolbarButtons(brightness: Theme.of(context).brightness),
         ],
       ),
@@ -1037,8 +1037,7 @@ class _WindowToolbarButtons extends StatefulWidget {
   State<_WindowToolbarButtons> createState() => _WindowToolbarButtonsState();
 }
 
-class _WindowToolbarButtonsState extends State<_WindowToolbarButtons>
-    with WindowListener {
+class _WindowToolbarButtonsState extends State<_WindowToolbarButtons> {
   bool isMaximized = false;
 
   @override
