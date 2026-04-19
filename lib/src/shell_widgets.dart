@@ -702,6 +702,7 @@ class _TopNav extends StatelessWidget {
                 ),
               ],
             ),
+          ),
         ],
       ),
     );
