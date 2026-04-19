@@ -702,13 +702,6 @@ class _TopNav extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          if (_desktopWindowControlsEnabled && !kIsWeb)
-            const DragToMoveArea(
-              child: SizedBox(width: 72, height: double.infinity),
-            ),
-          if (_desktopWindowControlsEnabled && !kIsWeb)
-            _WindowToolbarButtons(brightness: Theme.of(context).brightness),
         ],
       ),
     );
@@ -1028,90 +1021,9 @@ class _ToolbarMenuButton extends StatelessWidget {
   }
 }
 
-class _WindowToolbarButtons extends StatefulWidget {
+class _WindowToolbarButtons extends StatelessWidget {
   const _WindowToolbarButtons({required this.brightness});
-
   final Brightness brightness;
-
   @override
-  State<_WindowToolbarButtons> createState() => _WindowToolbarButtonsState();
-}
-
-class _WindowToolbarButtonsState extends State<_WindowToolbarButtons> {
-  bool isMaximized = false;
-
-  @override
-  void initState() {
-    super.initState();
-    if (_desktopWindowControlsEnabled) {
-      windowManager.addListener(this);
-      _loadWindowState();
-    }
-  }
-
-  @override
-  void dispose() {
-    if (_desktopWindowControlsEnabled) {
-      windowManager.removeListener(this);
-    }
-    super.dispose();
-  }
-
-  Future<void> _loadWindowState() async {
-    final maximized = await windowManager.isMaximized();
-    if (!mounted) {
-      return;
-    }
-    setState(() {
-      isMaximized = maximized;
-    });
-  }
-
-  @override
-  void onWindowMaximize() {
-    setState(() {
-      isMaximized = true;
-    });
-  }
-
-  @override
-  void onWindowUnmaximize() {
-    setState(() {
-      isMaximized = false;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        WindowCaptionButton.minimize(
-          brightness: widget.brightness,
-          onPressed: () {
-            windowManager.minimize();
-          },
-        ),
-        isMaximized
-            ? WindowCaptionButton.unmaximize(
-                brightness: widget.brightness,
-                onPressed: () {
-                  windowManager.unmaximize();
-                },
-              )
-            : WindowCaptionButton.maximize(
-                brightness: widget.brightness,
-                onPressed: () {
-                  windowManager.maximize();
-                },
-              ),
-        WindowCaptionButton.close(
-          brightness: widget.brightness,
-          onPressed: () {
-            windowManager.close();
-          },
-        ),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => const SizedBox.shrink();
 }

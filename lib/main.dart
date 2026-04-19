@@ -36,22 +36,5 @@ final ValueNotifier<bool> rightRailVisibleListenable = ValueNotifier<bool>(
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (_desktopWindowControlsEnabled) {
-    await windowManager.ensureInitialized();
-    const windowOptions = WindowOptions(
-      size: Size(1440, 920),
-      minimumSize: Size(1120, 720),
-      center: true,
-      backgroundColor: Colors.transparent,
-      skipTaskbar: false,
-      title: 'Social Production Mock App',
-      titleBarStyle: TitleBarStyle.hidden,
-      windowButtonVisibility: false,
-    );
-    await windowManager.waitUntilReadyToShow(windowOptions);
-    await windowManager.show();
-    await windowManager.focus();
-  }
-
   runApp(const MainApp());
 }
