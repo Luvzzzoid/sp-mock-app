@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:window_manager/window_manager.dart';
 
 import 'src/mock_data.dart';
 import 'src/mock_theme.dart';
